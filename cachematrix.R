@@ -31,7 +31,7 @@
 makeCacheMatrix <- function(hold_matrix = matrix()) { # pass initial matrix
   
   ## Members
-  ## hold_matrix : this is the matrix passed to makeCacheMatrix
+  ## hold_matrix : this is the matrix passed to makeCacheMatrix.. sort of a member
   ## hold_inverse : this is the variable to hold the matrix inverse
   
   hold_inverse <- NULL
@@ -68,6 +68,19 @@ makeCacheMatrix <- function(hold_matrix = matrix()) { # pass initial matrix
        getInverse = get_inverse)
 }
 
-cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+## cacheSolve takes the matrix list object made by
+##  the routine makeCacheMatrix.  It first checks
+##  to see if the matrix is even a square matrix.
+##  If the matrix is square, it then looks to see
+##  if the inverse already has been cached.  If
+##  the inverse has already been calculated and
+##  stored, then it does not repeat the computation,
+##  otherwise the solve function is used to calculate
+##  the inverse.  I obtained the idea for the solve
+##  function from: http://www.statmethods.net/advstats/matrix.html
+
+cacheSolve <- function(matrix_object, ...) {
+  
+  ## Members
+  local_inverse <- matrix_object$getInverse()
 }
