@@ -1,17 +1,13 @@
 Assignment 2 Markdown File
 ========================================================
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring web pages (click the **Help** toolbar button for more details on using R Markdown).
+In my opinion, this assignments tests a multitude of developing skills:
 
-When you click the **Knit HTML** button a web page will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+1. The use of git and github as a means of code development and code sharing amongst peers
+2. The continued development of R Programming skills
+   + Lexical scoping of variables
+   + Using multiple environments to hold variable values
+   
+The videos and powerpoint slides were not necessarily as helpful in completing this assignment (aside from understanding the Lexical scoping of R).  Instead, I had to research the documentation such as ?"<<-" to help understand the material.
 
-```{r}
-summary(cars)
-```
-
-You can also embed plots, for example:
-
-```{r fig.width=7, fig.height=6}
-plot(cars)
-```
-
+Per the assignment instructions, further details of the code are included as comments within the code instead of including in this markdown file.
