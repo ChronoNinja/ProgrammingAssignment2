@@ -78,9 +78,44 @@ makeCacheMatrix <- function(hold_matrix = matrix()) { # pass initial matrix
 ##  otherwise the solve function is used to calculate
 ##  the inverse.  I obtained the idea for the solve
 ##  function from: http://www.statmethods.net/advstats/matrix.html
-
+##
+##  Of course, local_inverse and local_matrix are sort of moot points,
+##  There is no real need to use them, could just work on the matrix_object
+##  directly.  But to follow the suggested template and to have ease of
+##  reading, I use them anyway.
+##
+##  Notice that this code already checks to see if the matrix has changed,
+##  Since the matrix changes in one of two ways, either the original matrix
+##  changes and then the makeCacheMatrix resets everything, or the setMatrix
+##  function is called, and everything is reset.  So no need to hard check
+##  whether the matrix has changed inside the code.  Just use as is.
 cacheSolve <- function(matrix_object, ...) {
   
   ## Members
-  local_inverse <- matrix_object$getInverse()
+  ## local_inverse : takes a variable of type makeCacheMatrix, specifically the inverse
+  ## local_matrix  : stores a copy of the current matrix into a local variable
+  local_inverse <- matrix_object$getInverse() 
+  local_matrix  <- matrix_object$getMatrix()
+  
+  ## First, check to see if the Inverse has already been calculated
+  ## If it has, then it should not have a NULL value and the inverse
+  ## Can just be returned
+  if(!is.null(local_inverse)) {
+    message("getting cached data")
+    return(local_inverse)
+  }
+
+  ## If we are at this part of the code, then we have passed the IF statement
+  ## In this case, the local_inverse is NULL, thus the inverse does need to
+  ## be calculated.  So, first, test whether the matrix is a square matrix.
+  
+  if (nrow(local_matrix) == ncol(local_matrix)) {
+    local_inverse <- solve(local_matrix)
+    matrix_object$setInverse(local_inverse)
+    return(local_inverse)
+  }
+  else {
+    message("Matrix is not square.  Please check your matrix.")
+    return(local_inverse)
+  }
 }
