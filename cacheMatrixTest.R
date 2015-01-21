@@ -27,3 +27,18 @@ y$getInverse()
 y <- makeCacheMatrix(x)
 y$getMatrix()
 y$getInverse()
+## Now test for the cacheSolve
+z <- cacheSolve(y)
+z
+## Gives correct output as expected: 0.6, -0.7, -0.2, 0.4
+## Show that the IF-ELSE statement works
+y$setMatrix(matrix(c(1,2,3,4),c(1,4)))
+z <- cacheSolve(y)
+## Reset everything back to the original status
+y <- makeCacheMatrix(x)
+z <- cacheSolve(y)
+x
+z
+## OR
+y$getMatrix()
+y$getInverse()
