@@ -34,6 +34,12 @@ z
 ## Show that the IF-ELSE statement works
 y$setMatrix(matrix(c(1,2,3,4),c(1,4)))
 z <- cacheSolve(y)
+z
+## Now show what happens when the matrix is square but singular
+## Use the 2x2 matrix 3, 6, 4, 8
+y$setMatrix(matrix(c(3,6,4,8),c(2,2)))
+z <- cacheSolve(y)
+z
 ## Reset everything back to the original status
 y <- makeCacheMatrix(x)
 z <- cacheSolve(y)

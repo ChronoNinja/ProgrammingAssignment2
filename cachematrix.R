@@ -108,14 +108,20 @@ cacheSolve <- function(matrix_object, ...) {
   ## If we are at this part of the code, then we have passed the IF statement
   ## In this case, the local_inverse is NULL, thus the inverse does need to
   ## be calculated.  So, first, test whether the matrix is a square matrix.
-  
-  if (nrow(local_matrix) == ncol(local_matrix)) {
+  ## However, even if the matrix is square, it could be singular.  A singular
+  ## matrix will be one that has a determinant of zero.  This needs to be 
+  ## checked for as well.
+  if ( nrow(local_matrix) == ncol(local_matrix) && det(local_matrix) != 0) {
     local_inverse <- solve(local_matrix)
     matrix_object$setInverse(local_inverse)
-    return(local_inverse)
+    return(local_inverse) # return new inverse
+  }
+  else if (nrow(local_matrix) != ncol(local_matrix)) {
+    message("Matrix is not square.  Please check your matrix.")
+    return(local_inverse) # return current inverse
   }
   else {
-    message("Matrix is not square.  Please check your matrix.")
-    return(local_inverse)
+    message("Martix is singular.  Cannot find inverse.")
+    return(local_inverse) # return current inverse
   }
 }
